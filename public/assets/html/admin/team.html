@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SP-Forum</title>
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/Boostrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Google Material Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <!-- Noty CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" rel="stylesheet">
+    <!-- Noty CSS Map-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css.map" rel="stylesheet">
+    <!-- Jquery links -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="sidebar" style="padding-left: 0">
+        <div class="logo-details">
+            <i class="material-icons">logo_dev</i>
+            <span class="logo_name">SP SPForum</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="https://spforum.herokuapp.com/dashboard">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/post-admin">
+                    <i class='bx bx-share-alt'></i>
+                    <span class="links_name">Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/stories-admin">
+                    <i class='bx bx-book-reader'></i>
+                    <span class="links_name">Stories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/events-admin">
+                    <i class='bx bx-calendar-event'></i>
+                    <span class="links_name">Events</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/team" class="active">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Team</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/reports">
+                    <i class='bx bxs-flag-alt'></i>
+                    <span class="links_name">Reports</span>
+                </a>
+            </li>
+            <li class="log_out" id="logout">
+                <a style="cursor: pointer;">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Team</span>
+            </div>
+
+            <div class="profile-details" onclick="location='https://spforum.herokuapp.com/profile'">
+                <img id="profilePic">
+                <span id="adminName" class="admin_name"></span>
+            </div>
+        </nav>
+
+        <div class="home-content">
+            <div class="top-posts">
+                <div class="top-stories box text-center">
+                    <div class="titleV2">Team</div>
+                    <h4 id="userPage" class="active" onclick="activeUser()">Users</h4>
+                    <h4 id="groupPage" onclick="activeGrp()">Groups</h4>
+                    <hr id="divider">
+                    <div id="UsersSection">
+                        <div style="width: 100%; margin-bottom: 10px; text-align: right;" class="text-right">
+                            <div class="dropdown" style="display: inline-block;">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown">
+                                    Roles
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" onclick="getAllUsers()">All</a>
+                                    <a class="dropdown-item" onclick="getAllUsersByRole('Admin')">Admin</a>
+                                    <a class="dropdown-item" onclick="getAllUsersByRole('IT')">IT</a>
+                                    <a class="dropdown-item" onclick="getAllUsersByRole('Post Manager')">Post
+                                        Manager</a>
+                                </div>
+                            </div>
+
+                            <form class="form-inline" style="display: inline-block; margin-left: 5px;">
+                                <input class="form-control searchBar" type="search" placeholder="Find Users"
+                                    id="userSearch">
+                            </form>
+                        </div>
+
+                        <table class="table table-hover" style="width: 100%">
+                            <thead>
+                                <p id="similarSearch" class="text-left"></p>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">School</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allUsers">
+                            </tbody>
+                        </table>
+                        <h4 id="msgUser" class="text-center"></h4>
+                    </div>
+
+                    <div id="GroupSection" style="display:none">
+                        <div style="width: 100%; margin-bottom: 10px; text-align: right;" class="text-right">
+                            <button type="button" class="btn btn-warning" id="addGrpBtn">
+                                Add Group
+                                <i class='bx bx-plus'></i>
+                            </button>
+                        </div>
+
+                        <table class="table table-hover" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Group ID</th>
+                                    <th scope="col">Group Name</th>
+                                    <th scope="col">Group Description</th>
+                                    <th scope="col">No. Of People In Group</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allGrps">
+                            </tbody>
+                        </table>
+                        <h4 id="msgGrp" class="text-center"></h4>
+                    </div>
+                </div>
+
+                <div class="bg-modal" id="modalUsers">
+                    <div class="modal-content" style="width: 40%;border-radius: 4px;">
+                        <i class="material-icons text-right close">close</i>
+                        <h2 class="text-center" style="margin-bottom: 5px;">Update User Role</h2>
+                        <form>
+                            <input type="number" id="userID" hidden />
+                            <label>Username:</label>
+                            <input type="text" placeholder="Question" id="usernameInput" class="modalInput" disabled>
+                            <label>User Email:</label>
+                            <input type="text" placeholder="Question Description" id="userEmailInput" class="modalInput"
+                                disabled>
+                            <div id="schoolCat"></div>
+                            <label>Role</label>
+                            <select id="roleInput" onchange="onRoleChange()">
+                                <option value="0"></option>
+                            </select>
+                            <label id="downgradeLabel" hidden>Reason for Downgrade</label>
+                            <input type="text" id="downgradeReason" class="modalInput" required disabled hidden />
+                            <input type="text" id="updateUserAction" value="NIL" disabled hidden />
+                            <label id="deleteUserLabel" hidden>Reason for Delete</label>
+                            <input type="text" id="reasonForDelete" class="modalInput" disabled hidden />
+                            <input type="submit" id="editUser" class="btn text-center" value="Update"
+                                onclick="return false" />
+                            <input type="button" class="btn text-center btn-danger" id="deleteUserInput"
+                                onclick="deleteUserForEmail()" value="Delete User" />
+                            <input type="submit" id="deleteUser" class="btn text-center btn-danger" value="Delete" onclick="return false"
+                                hidden />
+                        </form>
+                    </div>
+                </div>
+
+                <div class="bg-modal" id="addGrp">
+                    <div class="modal-content" style="width: 40%;border-radius: 4px;">
+                        <i class="material-icons text-right close2">close</i>
+                        <h2 class="text-center" style="margin-bottom: 5px;">Add Group</h2>
+                        <form>
+                            <label>GroupName:</label>
+                            <input type="text" placeholder="Group Name" id="grpNameInput" class="modalInput">
+                            <label>Group Description:</label>
+                            <input type="text" placeholder="Group Description" id="grpDesInput" class="modalInput">
+                            <input type="submit" class="btn btn-success text-center" value="Add" id="addGrpFormBtn"
+                                onclick="return false" />
+                        </form>
+                    </div>
+                </div>
+
+                <div class="bg-modal" id="editGrp">
+                    <div class="modal-content" style="width: 40%;border-radius: 4px;">
+                        <i class="material-icons text-right close3">close</i>
+                        <h2 class="text-center" style="margin-bottom: 5px;">Edit Group</h2>
+                        <form>
+                            <input type="number" id="grpID" hidden />
+                            <label>GroupName:</label>
+                            <input type="text" placeholder="Group Name" id="editGrpNameInput" class="modalInput">
+                            <label>Group Description:</label>
+                            <input type="text" placeholder="Group Description" id="EditGrpDesInput" class="modalInput">
+                            <input type="submit" class="btn btn-success text-center" value="Edit" id="editGrpFormBtn" />
+                            <input type="submit" class="btn btn-danger text-center" value="Delete" id="deleteGrpFormBtn"
+                                onclick="return false" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Noty JS-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js">
+    </script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="/assets/js/team.js"></script>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+        function activeGrp() {
+            var activeElement = document.getElementById('userPage');
+            var inactiveElement = document.getElementById('groupPage');
+            activeElement.classList.remove('active');
+            inactiveElement.classList.add('active');
+        }
+
+        function activeUser() {
+            var activeElement = document.getElementById('groupPage');
+            var inactiveElement = document.getElementById('userPage');
+            activeElement.classList.remove('active');
+            inactiveElement.classList.add('active');
+        }
+
+        document.querySelector('.close').addEventListener('click', function () {
+            document.getElementById('modalUsers').style.display = "none";
+        });
+
+        document.querySelector('.close2').addEventListener('click', function () {
+            document.getElementById('addGrp').style.display = "none";
+        });
+
+        document.querySelector('.close3').addEventListener('click', function () {
+            document.getElementById('editGrp').style.display = "none";
+        });
+
+        document.getElementById('addGrpBtn').addEventListener('click', function () {
+            document.getElementById('addGrp').style.display = "flex";
+        });
+
+        document.getElementById('userPage').addEventListener('click', function () {
+            document.getElementById('GroupSection').style.display = "none";
+            document.getElementById('UsersSection').style.display = "block";
+        });
+
+        document.getElementById('groupPage').addEventListener('click', function () {
+            document.getElementById('GroupSection').style.display = "block";
+            document.getElementById('UsersSection').style.display = "none";
+        });
+
+        function onRoleChange() {
+            var changingRole = $('#roleInput').val();
+            var defaultRole = $('#roleInput').attr('data-initial-value');
+
+            if (changingRole === "5") {
+                if (defaultRole === changingRole) {
+                    $('#downgradeLabel').attr('hidden', true);
+                    $('#downgradeReason').attr({ 'disabled': true, 'hidden': true });
+                    $('#updateUserAction').val('NIL');
+                } else {
+                    $('#downgradeLabel').removeAttr('hidden');
+                    $('#downgradeReason').removeAttr('disabled hidden');
+                    $('#updateUserAction').val('Downgrade');
+                }
+            } else {
+                $('#downgradeLabel').attr('hidden', true);
+                $('#downgradeReason').attr({ 'disabled': true, 'hidden': true });
+                if (defaultRole === changingRole) $('#updateUserAction').val('NIL');
+                else $('#updateUserAction').val('Upgrade');
+            }
+        }
+
+        function deleteUserForEmail() {
+            $('#deleteUser').removeAttr('hidden');
+            $('#reasonForDelete').removeAttr('hidden disabled');
+            $('#deleteUserInput').attr('hidden', true);
+            $('#deleteUserLabel').removeAttr('hidden');
+        }
+
+        let userRole = localStorage.getItem('role');
+        if (userRole !== '"Admin"') {
+            window.location.href = `https://spforum.herokuapp.com/error`;
+        }
+    </script>
+
+</body>
+
+</html>

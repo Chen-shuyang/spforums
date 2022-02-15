@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SP-Forum</title>
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/Boostrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Google Material Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <!-- Noty CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" rel="stylesheet">
+    <!-- Noty CSS Map-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css.map" rel="stylesheet">
+    <!-- Jquery links -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="sidebar" style="padding-left: 0">
+        <div class="logo-details">
+            <i class="material-icons">logo_dev</i>
+            <span class="logo_name">SP SPForum</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="https://spforum.herokuapp.com/dashboard">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/post-admin">
+                    <i class='bx bx-share-alt'></i>
+                    <span class="links_name">Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/stories-admin">
+                    <i class='bx bx-book-reader'></i>
+                    <span class="links_name">Stories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/events-admin" class="active">
+                    <i class='bx bx-calendar-event'></i>
+                    <span class="links_name">Events</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/team">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Team</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/reports">
+                    <i class='bx bxs-flag-alt'></i>
+                    <span class="links_name">Reports</span>
+                </a>
+            </li>
+            <li class="log_out" id="logout">
+                <a style="cursor: pointer;">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Events</span>
+            </div>
+            
+            <div class="profile-details" onclick="location='https://spforum.herokuapp.com/profile'">
+                <img id="profilePic">
+                <span id="adminName" class="admin_name"></span>
+            </div>
+        </nav>
+
+        <div class="home-content">
+            <div class="top-posts">
+                <div class="top-stories box">
+                    <div class="titleV2 text-center">All Events</div>
+                    <div style="width: 100%; margin-bottom: 10px; text-align: right;" class="text-right">
+                        <div class="dropdown" style="display: inline-block;">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-bs-toggle="dropdown">
+                                Date Filter
+                            </button>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <label for="start">Start date:</label>
+                                <input type="date" id="startDate" value="" min="2021-05-01" max=""
+                                    style="display: block;">
+                                <div class="dropdown-divider"></div>
+                                <label for="start">End date:</label>
+                                <input type="date" id="endDate" value="" min="2021-05-01" max=""
+                                    style="display: block;">
+                                <button class="btn btn-primary" style="margin-top: 10px;"
+                                    id="dateFilter">Filter</button>
+                            </div>
+                        </div>
+
+                        <div style="width: 30%; display: inline-block;">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control mr-2" placeholder="Search..." id="eventSearchBox">
+                              </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <p id="similarSearch"></p>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Event Title</th>
+                                <th scope="col">Curret Cap</th>
+                                <th scope="col">Max Cap</th>
+                                <th scope="col">Host</th>
+                                <th scope="col">Event Date</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allEvents">
+                        </tbody>
+                    </table>
+                    <h4 id="msg" class="text-center"></h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Noty JS-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js">
+    </script>
+    <script src="/assets/js/events-admin.js"></script>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+        const userRole = localStorage.getItem('role');
+        if (userRole !== '"Admin"') {
+            window.location.href = `https://spforum.herokuapp.com/error`;
+        }
+    </script>
+
+
+</body>
+
+</html>

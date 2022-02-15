@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="assets/css/profile.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <title>Profile</title>
+    <!-- Additional CSS Files -->
+
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Noty CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" rel="stylesheet">
+    <!-- Noty CSS Map-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css.map" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+        integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body class="profile-page">
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="/homepage" class="logo">
+              SP SP-Forum
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="/homepage" class="active">Home</a></li>
+              <li class="has-sub">
+                <a href="javascript:void(0)">School</a>
+                <ul class="sub-menu">
+                  <li><a href="/qna?catid=5">Computing</a></li>
+                  <li><a href="/qna?catid=15">Business</a></li>
+                  <li><a href="/qna?catid=25">Mechanical & Aeronautical Engineering</a></li>
+                  <li><a href="/qna?catid=35">Media, Arts & Design</a></li>
+                  <li><a href="/qna?catid=45">Chemical & Life Sciences</a></li>
+                  <li><a href="/qna?catid=55">ABE</a></li>
+                  <li><a href="/qna?catid=65">Electrical & Electronic Engineering</a></li>
+                  <li><a href="/qna?catid=75">Life Skills & Communication</a></li>
+                  <li><a href="/qna?catid=85">Mathematics & Science</a></li>
+                  <li><a href="/qna?catid=95">Professional & Adult Continuing Education Academy</a></li>
+                  <li><a href="/qna?catid=5105">Singapore Maritime Academy</a></li>
+                </ul>
+              </li>
+              <li class="has-sub">
+                <a href="javascript:void(0)">Story</a>
+                <ul class="sub-menu">
+                  <li><a href="/story">view Story</a></li>
+                  <li><a id="addStorybtn" hidden disabled class="storybtn" href="/addStory">Add Story</a></li>
+                </ul>
+              </li>
+              <li><a id="joinbtn" href="/joinroom" hidden disabled>Join Room</a></li>
+              <li class="has-sub">
+                <a href="javascript:void(0)">Event</a>
+                <ul class="sub-menu">
+                  <li><a href="/event">View Events</a></li>
+                  <li><a id="addEventBtn" hidden disabled class="eventBtn" href="/addEvent">Add Event</a></li>
+                </ul>
+              </li>
+              <li><a id="profilebtn"href="/profile" hidden disabled>Profile</a></li>
+              <li class="scroll-to-section">
+                <a id="loginBtn" href="#">Login</a>
+                <a id="logout" hidden disabled onclick="window.localStorage.clear();
+                    window.location.assign(`https://spforum.herokuapp.com/`);" href="#">Logout</a>
+              </li>
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+    <div class="page-header header-filter"
+        style="background-image:url('assets/images/night-sky.jpg'); margin: -40px 0 -20px">
+    </div>
+
+    <div class="main main-raised">
+        <div class="profile-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img id="profilePic" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            </div>
+                            <div class="name">
+                                <div style="margin: 10px 0 10px 0;">
+                                    <h3 class="title" id="username" style="display: inline;"></h3>
+                                    <div id="editProfile" class="material-icons">edit_note</div>
+                                </div>
+
+                                <h5 id="school"></h5>
+                                <a href="https://www.facebook.com" target="_blank" class="btn btn-just-icon btn-link"><i
+                                        class="fa fa-facebook"></i></a>
+                                <a href="https://www.twitter.com" target="_blank" class="btn btn-just-icon btn-link"><i
+                                        class="fa fa-twitter"></i></a>
+                                <a href="https://www.instagram.com/" target="_blank" class="btn btn-just-icon btn-link"><i
+                                        class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="description text-center">
+                    <p id="description"></p>
+                    <button id="toAdminPanels" class="btn btn-primary btn-lg" onclick="location='https://spforum.herokuapp.com/dashboard'">Access Admin Panel</button>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                            <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#questions" id="questionSection" role="tab"
+                                        data-toggle="tab">
+                                        <i class="material-icons">question_answer</i>
+                                        MyQuestions
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#stories" role="tab" id="MyStoriesSection"
+                                        data-toggle="tab">
+                                        <i class="material-icons">auto_stories</i>
+                                        MyStories
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#save" role="tab" id="savedSection" data-toggle="tab">
+                                        <i class="material-icons">bookmark</i>
+                                        Saved
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#favorite" role="tab" id="favoriteSection"
+                                        data-toggle="tab">
+                                        <i class="material-icons">favorite</i>
+                                        MyInterest
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content tab-space">
+                    <div class="dropdown text-right" style="margin-inline: 10%;" id="postFilter">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filter Posts
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" onclick="sortByRecent()">Most Recent</a>
+                            <a class="dropdown-item" onclick="sortByUpvote()">Most Liked</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown text-right" style="margin-inline: 10%; display: none;" id="postOrAns">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Liked Post/Ans
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" onclick="loadAllLikedQn()">Liked Questions</a>
+                            <a class="dropdown-item" onclick="loadAllLikedAns()">Liked Answers</a>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane active gallery" id="questions"></div>
+                    <div class="tab-pane gallery" id="stories"></div>
+                    <div class="tab-pane gallery" id="save"></div>
+                    <div class="tab-pane gallery" id="favorite"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer text-center ">
+        <p>Copyright © 2022 SP Forums 2022 All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+        integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+        crossorigin="anonymous"></script>
+</body>
+
+<!-- Modal Section   -->
+<div class="bg-modal" id="modalprofile">
+    <div class="modal-content" style="width: 40%;border-radius: 4px;">
+        <i class="material-icons text-right close">close</i>
+        <h2 class="text-center" style="margin-bottom: 5px;">Update Profile</h2>
+        <form>
+            <label>Username:</label>
+            <input type="text" placeholder="username" id="usernameInput">
+            <label>Email:</label>
+            <input type="text" placeholder="email" id="emailInput">
+            <label>School:</label>
+            <input type="text" placeholder="school" id="schoolInput">
+            <label>Credential:</label>
+            <input type="text" placeholder="credential" id="credentialInput">
+            <label>Description:</label>
+            <input type="text" placeholder="description" id="descriptionInput">
+            <input type="submit" id="updateProfile" class="btn btn-primary text-center" value="Update" />
+            <p id="msg"></p>
+        </form>
+    </div>
+</div>
+
+<div class="bg-modal" id="modalPosts">
+    <div class="modal-content" style="width: 40%;border-radius: 4px;">
+        <i class="material-icons text-right close2">close</i>
+        <h2 class="text-center" style="margin-bottom: 5px;">Update Question</h2>
+        <form>
+            <input type="number" id="questionID" hidden />
+            <label>Question:</label>
+            <input type="text" placeholder="Question" id="questionInput">
+            <label>Question Description:</label>
+            <input type="text" placeholder="Question Description" id="QnDesInput">
+            <div id="schoolCat"></div>
+            <label>Choose a School To Change</label>
+            <select id="categoryInput">
+                <option value="0"></option>
+            </select>
+            <input type="submit" id="updateQuestion" class="btn text-center" value="Update" />
+            <input type="button" id="deleteQuestion" class="btn text-center" value="Delete" />
+            <p id="msg"></p>
+        </form>
+    </div>
+</div>
+
+<div class="bg-modal" id="modalStory">
+    <div class="modal-content" style="width: 40%;border-radius: 4px;">
+        <i class="material-icons text-right close2">close</i>
+        <h2 class="text-center" style="margin-bottom: 5px;">Update Story</h2>
+        <form>
+            <input type="number" id="storyId" hidden />
+            <label>Title:</label>
+            <input type="text" placeholder="Title" id="storyTitle">
+            <label>Story Description:</label>
+            <input type="text" placeholder="Story Description" id="StoryDesInput">
+            <label>Story:</label>
+            <input type="text" placeholder="Story" id="StoryInput">
+            <input type="submit" id="updateQuestion" class="btn text-center" value="Update" />
+            <input type="button" id="deleteQuestion" class="btn text-center" value="Delete" />
+            <p id="msg"></p>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('editProfile').addEventListener('click', function () {
+        document.getElementById('modalprofile').style.display = "flex";
+    });
+
+    document.querySelector('.close').addEventListener('click', function () {
+        document.getElementById('modalprofile').style.display = "none";
+    });
+
+    document.querySelector('.close2').addEventListener('click', function () {
+        document.getElementById('modalPosts').style.display = "none";
+    });
+
+    document.getElementById('questionSection').addEventListener('click', function () {
+        document.getElementById('postFilter').style.display = "block";
+    });
+
+    document.getElementById('favoriteSection').addEventListener('click', function () {
+        document.getElementById('postOrAns').style.display = "block";
+    });
+
+    document.getElementById('savedSection').addEventListener('click', function () {
+        document.getElementById('postFilter').style.display = "none";
+    });
+
+    document.getElementById('favoriteSection').addEventListener('click', function () {
+        document.getElementById('postFilter').style.display = "none";
+    });
+
+    document.getElementById('savedSection').addEventListener('click', function () {
+        document.getElementById('postOrAns').style.display = "none";
+    });
+
+    document.getElementById('questionSection').addEventListener('click', function () {
+        document.getElementById('postOrAns').style.display = "none";
+    });
+
+    document.getElementById('MyStoriesSection').addEventListener('click', function () {
+        document.getElementById('postOrAns').style.display = "none";
+    });
+
+    document.getElementById('MyStoriesSection').addEventListener('click', function () {
+        document.getElementById('postFilter').style.display = "none";
+    });
+</script>
+    <!-- Noty JS-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js">
+    </script>
+<script src="assets/js/profile.js"></script>
+
+</html>

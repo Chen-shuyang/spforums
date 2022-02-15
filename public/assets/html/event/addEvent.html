@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="TemplateMo">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <title>SP-Forum</title>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+   <!-- Noty CSS-->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" rel="stylesheet">
+   <!-- Noty CSS Map-->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css.map" rel="stylesheet">
+  <!-- Google OAuth -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id"
+    content="370180577092-24sie7netu2b0vg8a0a523pumd2tvaol.apps.googleusercontent.com">
+
+  <!-- Bootstrap core CSS -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Google Material Icon -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/lightbox.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+
+</head>
+
+<body>
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          <a href="/homepage" class="logo">
+            SP SP-Forum
+          </a>
+          <!-- ***** Logo End ***** -->
+          <!-- ***** Menu Start ***** -->
+          <ul class="nav">
+            <li class="scroll-to-section"><a href="/homepage" class="active">Home</a></li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">School</a>
+              <ul class="sub-menu">
+                <li><a href="/qna?catid=5">Computing</a></li>
+                <li><a href="/qna?catid=15">Business</a></li>
+                <li><a href="/qna?catid=25">Mechanical & Aeronautical Engineering</a></li>
+                <li><a href="/qna?catid=35">Media, Arts & Design</a></li>
+                <li><a href="/qna?catid=45">Chemical & Life Sciences</a></li>
+                <li><a href="/qna?catid=55">ABE</a></li>
+                <li><a href="/qna?catid=65">Electrical & Electronic Engineering</a></li>
+                <li><a href="/qna?catid=75">Life Skills & Communication</a></li>
+                <li><a href="/qna?catid=85">Mathematics & Science</a></li>
+                <li><a href="/qna?catid=95">Professional & Adult Continuing Education Academy</a></li>
+                <li><a href="/qna?catid=5105">Singapore Maritime Academy</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Story</a>
+              <ul class="sub-menu">
+                <li><a href="/story">view Story</a></li>
+                <li><a id="addStorybtn" hidden disabled class="storybtn" href="/addStory">Add Story</a></li>
+              </ul>
+            </li>
+            <li><a id="joinbtn" href="/joinroom" hidden disabled>Join Room</a></li>
+            <li class="has-sub">
+                <a href="javascript:void(0)">Event</a>
+                <ul class="sub-menu">
+                  <li><a href="/event">View Events</a></li>
+                  <li><a id="addEventBtn" hidden disabled class="eventBtn" href="/addEvent">Add Event</a></li>
+                </ul>
+              </li>
+            <li><a id="profilebtn"href="/profile" hidden disabled>Profile</a></li>
+            <li class="scroll-to-section">
+              <a id="loginBtn" href="#">Login</a>
+              <a id="logout" hidden disabled onclick="window.localStorage.clear();
+                  window.location.assign(`https://spforum.herokuapp.com/`);" href="#">Logout</a>
+            </li>
+          </ul>
+          <a class='menu-trigger'>
+            <span>Menu</span>
+          </a>
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+  <section class="contact-us" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 align-self-center">
+          <div class="row">
+            <form action="" id="contact">
+              <div class="col-lg-12">
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2>Add Event</h2>
+                  </div>
+                  <div class="col-lg-3">
+                    <fieldset>
+                      <input name="title" type="text" id="title" placeholder="Event Title..." required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3">
+                    <fieldset>
+                      <input name="eventtime" type="datetime-local" id="eventtime" value="2022-01-01T00:00"
+                      min="2022-01-01T00:00" max="2022-12-31T00:00" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3">
+                    <fieldset>
+                      <input name="eventduration" list="hours" id="eventduration" placeholder="Duration..." required="">
+                      <datalist id="hours">
+                        <option value="1 Hour">
+                        <option value="1 Hour 30 Mins">
+                        <option value="2 Hours">
+                        <option value="2 Hours 30 Mins">
+                        <option value="3 Hours">
+                        <option value="3 Hours 30 Mins">
+                        <option value="4 Hours"></option>
+                      </datalist>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-3">
+                    <fieldset>
+                      <input name="maxcapacity" type="number" id="maxcapacity" placeholder="Max Capacity..." min="1" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <textarea name="message" type="text" class="form-control" id="description" placeholder="Event Description..."
+                        required=""></textarea>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <input type="submit" value="Post your Event" id="add">
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-lg-3">
+        <div class="right-info">
+          <ul>
+            <li>
+              <h6>Rules and Regulation</h6>
+              <span>No Curse Word</span>
+            </li>
+            <li>
+              <h6>Let your creativity go wild</h6>
+    
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="footer">
+      <p>Copyright © SP Forums 2022 All Rights Reserved.
+        <!-- <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a> -->
+      </p>
+    </div>
+  </section>
+  <div class="bg-modal" id="loginModal">
+    <div class="modal-content" style="width: 30%;border-radius: 4px;height: 600px;">
+      <i class="material-icons close">close</i>
+      <h2 class="text-center mb-3">Login</h2>
+      <form>
+        <div class="form-group">
+          <label>Username:</label>
+          <input type="text" placeholder="Username" id="usernameInput" class="loginModalInput">
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="password" placeholder="Password" id="pwdInput" class="loginModalInput">
+        </div>
+        <div class="form-group">
+          <div class="g-recaptcha" data-sitekey="6Le2SD8eAAAAANYnozyDFVgEdGBoSqGJ-U_CH2Rl"></div>
+        </div>
+        <div class="form-group">
+          <label>Token:</label>
+          <input type="int" placeholder="Token" id="secInput" class="loginModalInput">
+        </div>
+        <button onclick="this.classList.toggle('button--loading')" type="submit" class="btn btn-success" id="login">Login</button>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <p class="message text-center mt-2">Not registered? <a href="#" id="signupBtn">Create an account</a></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="bg-modal" id="signUpModal">
+    <div class="modal-content" id="registerModal" style="width: 30%;border-radius: 4px;height: 600px;">
+      <i class="material-icons close2">close</i>
+      <h2 class="text-center">Register</h2>
+      <form>
+        <input type="number" id="googleID" hidden />
+        <label>Username:</label>
+        <input type="text" placeholder="Username" id="usernameRegisterInput" class="loginModalInput" required>
+        <label>Email Address:</label>
+        <input type="email" placeholder="Password" id="emailInput" class="loginModalInput" required>
+        <label>School</label>
+        <select class="form-select border border-dark border-2" id="schoolList" style="font-size: medium !important;"
+          required>
+          <option value="0" selected>Select Your School</option>
+        </select>
+        <label id="registerPwdLabel">Password:</label>
+        <input type="password" placeholder="Password" id="registerPwdInput" class="loginModalInput" required>
+        <label id="confirmPwdLabel">Confirm Password:</label>
+        <input type="password" placeholder="Password" id="confirmPwdInput" class="loginModalInput" required>
+        <input type="submit" class="btn btn-success" value="Create" id="register" style="margin-bottom: 10px;" 
+          onclick="this.classList.toggle('button--loading')"/>
+        <div class="g-signin2" data-onsuccess="onSignUp" onclick="signUpWithGoogle()" style="display: inline-block">
+        </div>
+        <button class="btn btn-outline-dark btn-sm" id="regularSignUpBtn" ><span > SignUp</span> </button>
+        <p class="message text-center">Already registered? <a href="#" id="loginModalBtn">Login</a></p>
+      </form>
+    </div>
+  </div>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <!-- Scripts -->
+  <script src="/assets/js/event.js"></script>
+  <!-- JQuery-->
+  <script src="assets/js/homepage.js"></script>
+    <!-- Noty JS-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js">
+    </script>
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/lightbox.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/video.js"></script>
+  <script src="assets/js/slick-slider.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+  <script>
+    document.querySelector('.close').addEventListener('click', function () {
+      document.getElementById('loginModal').style.display = "none";
+    });
+
+    document.getElementById('loginBtn').addEventListener('click', function () {
+      document.getElementById('loginModal').style.display = "flex";
+      document.getElementById('signUpModal').style.display = "none";
+    });
+
+    document.getElementById('loginModalBtn').addEventListener('click', function () {
+      document.getElementById('loginModal').style.display = "flex";
+      document.getElementById('signUpModal').style.display = "none";
+    });
+
+    document.querySelector('.close2').addEventListener('click', function () {
+      document.getElementById('signUpModal').style.display = "none";
+    });
+
+    document.getElementById('signupBtn').addEventListener('click', function () {
+      document.getElementById('signUpModal').style.display = "flex";
+      document.getElementById('loginModal').style.display = "none";
+    });
+
+    //according to loftblog tut
+    $('.nav li:first').addClass('active');
+
+    var showSection = function showSection(section, isAnimate) {
+      var
+        direction = section.replace(/#/, ''),
+        reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+        reqSectionPos = reqSection.offset().top - 0;
+
+      if (isAnimate) {
+        $('body, html').animate({
+          scrollTop: reqSectionPos
+        },
+          800);
+      } else {
+        $('body, html').scrollTop(reqSectionPos);
+      }
+
+    };
+
+    var checkSection = function checkSection() {
+      $('.section').each(function () {
+        var
+          $this = $(this),
+          topEdge = $this.offset().top - 80,
+          bottomEdge = topEdge + $this.height(),
+          wScroll = $(window).scrollTop();
+        if (topEdge < wScroll && bottomEdge > wScroll) {
+          var
+            currentId = $this.data('section'),
+            reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+          reqLink.closest('li').addClass('active').
+            siblings().removeClass('active');
+        }
+      });
+    };
+
+    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+      e.preventDefault();
+      showSection($(this).attr('href'), true);
+    });
+
+    $(window).scroll(function () {
+      checkSection();
+    });
+  </script>
+
+</body>
+
+</html>

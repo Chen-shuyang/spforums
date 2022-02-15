@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SP-Forum</title>
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/Boostrap.min.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Material Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <!-- Jquery links -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Noty CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" rel="stylesheet">
+    <!-- Noty CSS Map-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css.map" rel="stylesheet">
+</head>
+
+<body>
+    <div class="sidebar" style="padding-left: 0">
+        <div class="logo-details">
+            <i class="material-icons">logo_dev</i>
+            <span class="logo_name">SP SPForum</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="https://spforum.herokuapp.com/dashboard" class="active">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/post-admin">
+                    <i class='bx bx-share-alt'></i>
+                    <span class="links_name">Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/stories-admin">
+                    <i class='bx bx-book-reader'></i>
+                    <span class="links_name">Stories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/events-admin">
+                    <i class='bx bx-calendar-event'></i>
+                    <span class="links_name">Events</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/team">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Team</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://spforum.herokuapp.com/reports">
+                    <i class='bx bxs-flag-alt'></i>
+                    <span class="links_name">Reports</span>
+                </a>
+            </li>
+            <li class="log_out" id="logout">
+                <a style="cursor: pointer;">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Dashboard</span>
+            </div>
+
+            <div class="profile-details" onclick="location='https://spforum.herokuapp.com/profile'">
+                <img id="profilePic">
+                <span id="adminName" class="admin_name"></span>
+            </div>
+        </nav>
+
+        <div class="home-content">
+            <div class="overview-boxes">
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Users</div>
+                        <div class="number" id="userNo"></div>
+                    </div>
+                    <i class='bx bxs-user-account forum'></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Posts</div>
+                        <div class="number" id="postNo"></div>
+                    </div>
+                    <i class='bx bxs-book-reader forum two'></i>
+
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Stories</div>
+                        <div class="number" id="storyNo"></div>
+                    </div>
+                    <i class='bx bxs-chat forum three'></i>
+                </div>
+                <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Total Events</div>
+                        <div class="number" id="eventNo"></div>
+                    </div>
+                    <i class='bx bxs-calendar-event forum four'></i>
+                </div>
+            </div>
+
+            <div class="top-posts">
+                <div class="top-stories box" style="width: 60%;">
+                    <div class="title">Top Stories</div>
+                    <div class="story-details">
+                        <ul class="details" id="storyTitle" style="width: 55%;">
+                            <li class="topic">Story</li>
+                        </ul>
+
+                        <ul class="details" id="noOfLikes">
+                            <li class="topic">No. Of Likes</li>
+                        </ul>
+                        <ul class="details" id="noOfComments">
+                            <li class="topic">No. Of Comments</li>
+                        </ul>
+                    </div>
+                    <div class="button">
+                        <a href="https://spforum.herokuapp.com/stories-admin">See All</a>
+                    </div>
+                </div>
+                <div class="top-questions box">
+                    <div class="title">Top Posts</div>
+                    <ul id="displayTopPosts">
+                        
+                    </ul>
+                    <div class="button">
+                        <a href="https://spforum.herokuapp.com/post-admin">See All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Noty JS-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js">
+    </script>
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+        sidebarBtn.onclick = function () {
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            } else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+        const userRole = localStorage.getItem('role');
+        if (userRole !== '"Admin"') {
+            window.location.href = `https://spforum.herokuapp.com/error`;
+        }
+    </script>
+    <script src="/assets/js/dashboard.js"></script>
+
+</body>
+
+</html>

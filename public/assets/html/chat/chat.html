@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    />
+    <title>SP-Forum</title>
+    <!-- Google OAuth -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id"
+    content="370180577092-24sie7netu2b0vg8a0a523pumd2tvaol.apps.googleusercontent.com">
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+      <!-- Noty CSS-->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" rel="stylesheet">
+      <!-- Noty CSS Map-->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css.map" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <link rel="stylesheet" href="assets/css/chat.css" />
+
+    <!--<title> Responsiive Admin Dashboard | CodingLab </title>-->
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Google Material Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+ 
+ <!-- ***** Header Area Start ***** -->
+ <header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          <a href="/homepage" class="logo">
+            SP SP-Forum
+          </a>
+          <!-- ***** Logo End ***** -->
+          <!-- ***** Menu Start ***** -->
+          <ul class="nav">
+            <li class="scroll-to-section"><a href="/homepage" class="active">Home</a></li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">School</a>
+              <ul class="sub-menu">
+                <li><a href="/qna?catid=5">Computing</a></li>
+                <li><a href="/qna?catid=15">Business</a></li>
+                <li><a href="/qna?catid=25">Mechanical & Aeronautical Engineering</a></li>
+                <li><a href="/qna?catid=35">Media, Arts & Design</a></li>
+                <li><a href="/qna?catid=45">Chemical & Life Sciences</a></li>
+                <li><a href="/qna?catid=55">ABE</a></li>
+                <li><a href="/qna?catid=65">Electrical & Electronic Engineering</a></li>
+                <li><a href="/qna?catid=75">Life Skills & Communication</a></li>
+                <li><a href="/qna?catid=85">Mathematics & Science</a></li>
+                <li><a href="/qna?catid=95">Professional & Adult Continuing Education Academy</a></li>
+                <li><a href="/qna?catid=5105">Singapore Maritime Academy</a></li>
+              </ul>
+            </li>
+            <li class="has-sub">
+              <a href="javascript:void(0)">Story</a>
+              <ul class="sub-menu">
+                <li><a href="/story">view Story</a></li>
+                <li><a id="addStorybtn" hidden disabled class="storybtn" href="/addStory">Add Story</a></li>
+              </ul>
+            </li>
+            <li><a id="joinbtn" href="/joinroom" hidden disabled>Join Room</a></li>
+            <li><a href="/event">Event</a></li>
+            <li><a id="profilebtn"href="/profile" hidden disabled>Profile</a></li>
+            <li class="scroll-to-section">
+              <a id="loginBtn" href="#">Login</a>
+              <a id="logout" hidden disabled onclick="window.localStorage.clear();
+                  window.location.assign(`https://spforum.herokuapp.com/`);" href="#">Logout</a>
+            </li>
+          </ul>
+          <a class='menu-trigger'>
+            <span>Menu</span>
+          </a>
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- ***** Header Area End ***** -->
+
+    <div class="chat-container">
+      <header class="chat-header">
+        <h1><i class="fas fa-smile"></i> Student Chatroom</h1>
+        <a id="leave-btn" class="btn">Leave Room</a>
+      </header>
+      <main class="chat-main">
+        <div class="chat-sidebar">
+          <h3><i class="fas fa-comments"></i> Room Name:</h3>
+          <h2 id="room-name"></h2>
+          <h3><i class="fas fa-users"></i> Users</h3>
+          <ul id="users"></ul>
+        </div>
+        <div class="chat-messages"></div>
+      </main>
+      <div class="chat-form-container">
+        <form id="chat-form">
+          <input
+            id="msg"
+            type="text"
+            placeholder="Enter Message"
+            required
+            autocomplete="off"
+          />
+          <button class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+        </form>
+      </div>
+    </div>
+    <div class="bg-modal" id="loginModal">
+      <div class="modal-content" style="width: 30%;border-radius: 4px;height: 600px;">
+        <i class="material-icons close">close</i>
+        <h2 class="text-center mb-3">Login</h2>
+        <form>
+          <div class="form-group">
+            <label>Username:</label>
+            <input type="text" placeholder="Username" id="usernameInput" class="loginModalInput">
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" placeholder="Password" id="pwdInput" class="loginModalInput">
+          </div>
+          <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="6Le2SD8eAAAAANYnozyDFVgEdGBoSqGJ-U_CH2Rl"></div>
+          </div>
+          <div class="form-group">
+            <label>Token:</label>
+            <input type="int" placeholder="Token" id="secInput" class="loginModalInput">
+          </div>
+          <button onclick="this.classList.toggle('button--loading')" type="submit" class="btn btn-success" id="login">Login</button>
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
+          <p class="message text-center mt-2">Not registered? <a href="#" id="signupBtn">Create an account</a></p>
+        </form>
+      </div>
+    </div>
+  
+    <div class="bg-modal" id="signUpModal">
+      <div class="modal-content" id="registerModal" style="width: 30%;border-radius: 4px;height: 600px;">
+        <i class="material-icons close2">close</i>
+        <h2 class="text-center">Register</h2>
+        <form>
+          <input type="number" id="googleID" hidden />
+          <label>Username:</label>
+          <input type="text" placeholder="Username" id="usernameRegisterInput" class="loginModalInput" required>
+          <label>Email Address:</label>
+          <input type="email" placeholder="Password" id="emailInput" class="loginModalInput" required>
+          <label>School</label>
+          <select class="form-select border border-dark border-2" id="schoolList" style="font-size: medium !important;"
+            required>
+            <option value="0" selected>Select Your School</option>
+          </select>
+          <label id="registerPwdLabel">Password:</label>
+          <input type="password" placeholder="Password" id="registerPwdInput" class="loginModalInput" required>
+          <label id="confirmPwdLabel">Confirm Password:</label>
+          <input type="password" placeholder="Password" id="confirmPwdInput" class="loginModalInput" required>
+          <input type="submit" class="btn btn-success" value="Create" id="register" style="margin-bottom: 10px;" 
+            onclick="this.classList.toggle('button--loading')"/>
+          <div class="g-signin2" data-onsuccess="onSignUp" onclick="signUpWithGoogle()" style="display: inline-block">
+          </div>
+          <button class="btn btn-outline-dark btn-sm" id="regularSignUpBtn" ><span > SignUp</span> </button>
+          <p class="message text-center">Already registered? <a href="#" id="loginModalBtn">Login</a></p>
+        </form>
+      </div>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" id="showModal" hidden>
+  
+</button>
+
+<!-- Modal -->
+<div class="bg-modal " id="exampleModal">
+  <div class="modal-content" style="width: 30%;border-radius: 4px;height: 20%;">
+    <h2 class="text-center mb-3">Incorrect user</h2>
+    <!--Modal Content-->
+    <div class="modal-content">
+      <a href="/joinroom"  type="button" class="btn btn-default">Exit</a>
+    </div>
+  </div>
+</div>
+
+    <!-- Noty JS-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js">
+    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/video.js"></script>
+    <script src="assets/js/slick-slider.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/homepage.js"></script>
+    <script src="assets/js/chat.js"></script>
+
+    <script>
+        document.querySelector('.close').addEventListener('click', function () {
+      document.getElementById('loginModal').style.display = "none";
+    });
+
+    document.getElementById('loginBtn').addEventListener('click', function () {
+      document.getElementById('loginModal').style.display = "flex";
+      document.getElementById('signUpModal').style.display = "none";
+    });
+
+    document.getElementById('loginBtn2').addEventListener('click', function () {
+      document.getElementById('loginModal').style.display = "flex";
+      document.getElementById('signUpModal').style.display = "none";
+      document.getElementById('exampleModal').style.display = "none";
+    });
+
+    document.getElementById('loginModalBtn').addEventListener('click', function () {
+      document.getElementById('loginModal').style.display = "flex";
+      document.getElementById('signUpModal').style.display = "none";
+    });
+
+    document.querySelector('.close2').addEventListener('click', function () {
+      document.getElementById('signUpModal').style.display = "none";
+    });
+
+    document.getElementById('signupBtn').addEventListener('click', function () {
+      document.getElementById('signUpModal').style.display = "flex";
+      document.getElementById('loginModal').style.display = "none";
+    });
+
+    
+
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+            var
+                direction = section.replace(/#/, ''),
+                reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+                reqSectionPos = reqSection.offset().top - 0;
+
+            if (isAnimate) {
+                $('body, html').animate({
+                    scrollTop: reqSectionPos
+                },
+                    800);
+            } else {
+                $('body, html').scrollTop(reqSectionPos);
+            }
+
+        };
+
+        var checkSection = function checkSection() {
+            $('.section').each(function () {
+                var
+                    $this = $(this),
+                    topEdge = $this.offset().top - 80,
+                    bottomEdge = topEdge + $this.height(),
+                    wScroll = $(window).scrollTop();
+                if (topEdge < wScroll && bottomEdge > wScroll) {
+                    var
+                        currentId = $this.data('section'),
+                        reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+                    reqLink.closest('li').addClass('active').
+                        siblings().removeClass('active');
+                }
+            });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+            e.preventDefault();
+            showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+            checkSection();
+        });
+
+        
+    </script>
+  </body>
+</html>
